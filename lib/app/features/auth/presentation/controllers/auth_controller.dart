@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 
 import '../../../../core/base/base_controller.dart';
-import '../../../../core/services/secure_storage_service.dart';
+import 'package:getx_starter_kit/app/core/helpers/auth.dart';
+import '../../../../core/utils/result.dart';
 import '../../../../core/widgets/snackbar_helper.dart';
+import '../../../../routes/app_routes.dart';
 import '../../data/models/login_request_model.dart';
 import '../../data/repositories/auth_repository_impl.dart';
 
@@ -10,32 +12,44 @@ class AuthController extends BaseController {
   AuthController(this._repository);
 
   final AuthRepositoryImpl _repository;
-  final SecureStorageService _secureStorageService = const SecureStorageService();
 
   Future<void> login(String email, String password) async {
     await callApi(() async {
-      final user = await _repository.login(LoginRequestModel(email: email.trim(), password: password));
-      await _secureStorageService.saveTokens(
-        access: 'demo_access_token',
-        refresh: 'demo_refresh_token',
-        expiry: DateTime.now().add(const Duration(hours: 1)),
-      );
-      SnackbarHelper.showSuccess('Welcome ${user.name}');
-      Get.offAllNamed('/home');
+      final result = await _repository.login(LoginRequestModel(email: email.trim(), password: password));
+
+      switch (result) {
+        case Success(:final value):
+          await Auth.setUser(value);
+          SnackbarHelper.showSuccess('Welcome ${value.name}');
+          Get.offAllNamed(AppRoutes.home);
+        case Failure(:final message):
+          setError(message);
+          SnackbarHelper.showError(message);
+      }
     });
   }
 
   Future<void> register(String email, String password) async {
     await callApi(() async {
-      final user = await _repository.register(LoginRequestModel(email: email.trim(), password: password));
-      SnackbarHelper.showSuccess('Account created for ${user.name}');
-      Get.offAllNamed('/home');
+      final result = await _repository.register(LoginRequestModel(email: email.trim(), password: password));
+
+      switch (result) {
+        case Success(:final value):
+          await Auth.setUser(value);
+          SnackbarHelper.showSuccess('Account created for ${value.name}');
+          Get.offAllNamed(AppRoutes.home);
+        case Failure(:final message):
+          setError(message);
+          SnackbarHelper.showError(message);
+      }
     });
   }
 
   Future<void> logout() async {
     await _repository.logout();
-    Get.offAllNamed('/login');
+    // clear local cached user + tokens
+    await Auth.clearSession();
+    Get.offAllNamed(AppRoutes.login);
     SnackbarHelper.showInfo('Logged out successfully');
   }
 }

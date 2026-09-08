@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
 
-import '../../services/secure_storage_service.dart';
+import 'package:getx_starter_kit/app/core/helpers/auth.dart';
 
 class AuthInterceptor extends Interceptor {
-  final SecureStorageService _secureStorageService = const SecureStorageService();
-
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     if (_isPublicEndpoint(options.path)) {
@@ -12,7 +10,7 @@ class AuthInterceptor extends Interceptor {
       return;
     }
 
-    final token = await _secureStorageService.getAccessToken();
+    final token = await Auth.accessToken;
     if (token != null && token.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $token';
     }

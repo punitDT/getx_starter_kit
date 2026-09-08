@@ -1,10 +1,9 @@
 import 'package:get/get.dart';
 
-import '../../../core/services/secure_storage_service.dart';
+import 'package:getx_starter_kit/app/core/helpers/auth.dart';
 import '../../../routes/app_routes.dart';
 
 class SplashController extends GetxController {
-  final SecureStorageService _secureStorageService = const SecureStorageService();
 
   @override
   void onReady() {
@@ -14,9 +13,8 @@ class SplashController extends GetxController {
 
   Future<void> _navigateAfterDelay() async {
     await Future<void>.delayed(const Duration(milliseconds: 1200));
-    final accessToken = await _secureStorageService.getAccessToken();
-    final isExpired = await _secureStorageService.isTokenExpired();
-    if (accessToken != null && !isExpired) {
+    final auth = await Auth.isAuthenticated();
+    if (auth) {
       Get.offAllNamed(AppRoutes.home);
       return;
     }

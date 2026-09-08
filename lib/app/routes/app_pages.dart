@@ -5,6 +5,7 @@ import '../features/auth/presentation/views/login_view.dart';
 import '../features/auth/presentation/views/register_view.dart';
 import '../features/home/home_binding.dart';
 import '../features/home/presentation/home_view.dart';
+import '../features/home/presentation/profile_view.dart';
 import '../features/splash/presentation/splash_view.dart';
 import '../features/splash/splash_binding.dart';
 import '../routes/middlewares/auth_middleware.dart';
@@ -32,6 +33,12 @@ class AppPages {
     GetPage(
       name: AppRoutes.home,
       page: () => const HomeView(),
+      binding: HomeBinding(),
+      middlewares: [AuthMiddleware()],
+    ),
+    GetPage(
+      name: AppRoutes.profile,
+      page: () => const ProfileView(),
       binding: HomeBinding(),
       middlewares: [AuthMiddleware()],
     ),

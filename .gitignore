@@ -16,4 +16,3 @@
 build/
 
 # Environment file should stay local
-.env

@@ -1,21 +1,21 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
+import 'package:flutter/material.dart';
 
 import 'app/bindings/initial_binding.dart';
 import 'app/core/theme/app_theme.dart';
 import 'app/core/translations/app_translations.dart';
 import 'app/routes/app_pages.dart';
 import 'app/routes/app_routes.dart';
+import 'app/core/helpers/env.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await dotenv.load();
   await GetStorage.init();
 
   runZonedGuarded(() {
@@ -31,7 +31,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appName = dotenv.isInitialized ? (dotenv.env['APP_NAME'] ?? 'GetX Starter Kit') : 'GetX Starter Kit';
+    final appName = Env.get('APP_NAME', defaultValue: 'GetX Starter Kit');
 
     return GetMaterialApp(
       title: appName,
@@ -43,7 +43,6 @@ class App extends StatelessWidget {
       initialBinding: InitialBinding(),
       initialRoute: AppRoutes.splash,
       getPages: AppPages.routes,
-      defaultTransition: Transition.fadeIn,
     );
   }
 }
