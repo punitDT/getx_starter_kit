@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-
-import 'package:getx_starter_kit/app/core/helpers/auth.dart';
+import 'package:getx_starter_kit/app/core/providers/user_provider.dart';
 import '../../../routes/app_routes.dart';
 
 class SplashController extends GetxController {
@@ -13,7 +12,7 @@ class SplashController extends GetxController {
 
   Future<void> _navigateAfterDelay() async {
     await Future<void>.delayed(const Duration(milliseconds: 1200));
-    final auth = await Auth.isAuthenticated();
+    final auth = await UserProvider.isAuthenticated();
     if (auth) {
       Get.offAllNamed(AppRoutes.home);
       return;

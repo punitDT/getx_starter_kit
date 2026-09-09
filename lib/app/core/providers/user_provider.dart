@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../services/user_session.dart';
@@ -8,29 +9,28 @@ import '../../features/auth/domain/entities/user_entity.dart';
 /// without calling `Get.find<UserSession>()` everywhere.
 ///
 /// Includes hooks to override behavior in tests via the `test*` static fields.
-class Auth {
-  Auth._();
-
-  // Testing overrides (set in tests)
-  static Future<bool> Function()? testIsAuthenticated;
-  static Future<String?> Function()? testAccessToken;
-  static Future<void> Function()? testClearSession;
+class UserProvider {
+  UserProvider._();
 
   static UserSession get session => Get.find<UserSession>();
 
   /// Current cached user (sync)
   static UserEntity? get user => session.user;
 
+  /// Get currant locale
+  static Locale get locale => Get.locale!;
+
+  /// update locale
+  static void updateLocale(Locale newLocale) => Get.updateLocale(newLocale);
+
   /// True if a user object exists (doesn't check token expiry)
   static bool get isLoggedIn => session.hasUser;
 
   /// Checks token expiry and returns whether the session is still authenticated
-  static Future<bool> isAuthenticated() =>
-      testIsAuthenticated != null ? testIsAuthenticated!() : session.isAuthenticated();
+  static Future<bool> isAuthenticated() => session.isAuthenticated();
 
   /// Access token (nullable)
-  static Future<String?> get accessToken =>
-      testAccessToken != null ? testAccessToken!() : session.getAccessToken();
+  static Future<String?> get accessToken => session.getAccessToken();
 
   /// Refresh token (nullable)
   static Future<String?> get refreshToken =>
@@ -45,8 +45,7 @@ class Auth {
 
   /// Clear user + secure tokens
   static Future<void> clearSession() async {
-    if (testClearSession != null) return testClearSession!();
     await session.clearUser();
-    await const SecureStorageService().clearAll();
+    await Get.find<SecureStorageService>().clearAll();
   }
 }

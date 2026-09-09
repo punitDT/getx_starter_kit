@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 
-import '../features/auth/auth_binding.dart';
+import '../features/auth/presentation/bindings/auth_binding.dart';
 import '../features/auth/presentation/views/login_view.dart';
 import '../features/auth/presentation/views/register_view.dart';
-import '../features/home/home_binding.dart';
+import '../features/home/presentation/home_binding.dart';
 import '../features/home/presentation/home_view.dart';
 import '../features/home/presentation/profile_view.dart';
 import '../features/splash/presentation/splash_view.dart';
-import '../features/splash/splash_binding.dart';
+import '../features/splash/presentation/splash_binding.dart';
 import '../routes/middlewares/auth_middleware.dart';
 import 'app_routes.dart';
 

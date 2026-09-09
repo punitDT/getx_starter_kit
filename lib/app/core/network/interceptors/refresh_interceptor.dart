@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../../constants/api_endpoints.dart';
-import 'package:getx_starter_kit/app/core/helpers/auth.dart';
+import '../../providers/user_provider.dart';
 
 class RefreshInterceptor extends Interceptor {
   @override
@@ -9,7 +9,7 @@ class RefreshInterceptor extends Interceptor {
     if (err.response?.statusCode == 401) {
       final shouldRefresh = err.requestOptions.path != ApiEndpoints.refresh;
       if (shouldRefresh) {
-        await Auth.clearSession();
+        await UserProvider.clearSession();
       }
     }
     handler.next(err);

@@ -5,6 +5,13 @@ import '../constants/storage_keys.dart';
 import '../../features/auth/domain/entities/user_entity.dart';
 
 class StorageService extends GetxService {
+
+  @override
+  Future<void> onInit() async {
+    super.onInit();
+    await GetStorage.init();
+  }
+
   final GetStorage _box = GetStorage();
 
   T? read<T>(String key) => _box.read(key);

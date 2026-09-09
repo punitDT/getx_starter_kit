@@ -1,11 +1,16 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 
 import '../constants/storage_keys.dart';
 
-class SecureStorageService {
-  const SecureStorageService();
+class SecureStorageService extends GetxService {
+  static late FlutterSecureStorage _storage;
 
-  static const FlutterSecureStorage _storage = FlutterSecureStorage();
+  @override
+  Future<void> onInit() async {
+    super.onInit();
+    _storage = const FlutterSecureStorage();
+  }
 
   Future<void> saveTokens({
     required String access,

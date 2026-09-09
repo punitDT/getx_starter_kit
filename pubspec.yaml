@@ -14,7 +14,6 @@ dependencies:
   dio: ^5.11.1
   get_storage: ^2.1.1
   flutter_secure_storage: ^10.3.1
-  flutter_dotenv: ^5.2.1
   connectivity_plus: ^7.1.0
   package_info_plus: ^9.0.1
   path_provider: ^2.1.4
@@ -31,7 +30,6 @@ dependencies:
   shimmer: ^3.0.0
   lottie: ^3.3.1
   flutter_screenutil: ^5.9.3
-  gap: ^3.0.1
   permission_handler: ^11.3.1
   device_info_plus: ^11.3.3
   image_picker: ^1.1.2
@@ -50,7 +48,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - .env
     - assets/images/
     - assets/icons/
     - assets/animations/
+    - assets/locales/

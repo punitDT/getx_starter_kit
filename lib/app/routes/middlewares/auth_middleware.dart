@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:getx_starter_kit/app/core/helpers/auth.dart';
+import '../../core/providers/user_provider.dart';
 import '../app_routes.dart';
 
 class AuthMiddleware extends GetMiddleware {
@@ -15,7 +14,7 @@ class AuthMiddleware extends GetMiddleware {
 
   @override
   Future<GetNavConfig?> redirectDelegate(GetNavConfig route) async {
-    final authenticated = await Auth.isAuthenticated();
+    final authenticated = await UserProvider.isAuthenticated();
 
     if (!authenticated) {
       return GetNavConfig.fromRoute(AppRoutes.login);

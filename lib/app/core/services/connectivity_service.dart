@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +8,9 @@ class ConnectivityService extends GetxService {
 
   StreamSubscription<List<ConnectivityResult>>? _subscription;
 
-  Future<void> init() async {
+  @override
+  Future<void> onInit() async {
+    super.onInit();
     final result = await _connectivity.checkConnectivity();
     _updateConnectionState(result);
     _subscription = _connectivity.onConnectivityChanged.listen(_updateConnectionState);

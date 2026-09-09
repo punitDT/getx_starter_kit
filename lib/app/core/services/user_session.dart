@@ -8,7 +8,7 @@ class UserSession extends GetxService {
   UserSession();
 
   final StorageService _storage = Get.find<StorageService>();
-  final SecureStorageService _secure = const SecureStorageService();
+  final SecureStorageService _secure = Get.find<SecureStorageService>();
 
   final Rxn<UserEntity> currentUser = Rxn<UserEntity>();
 

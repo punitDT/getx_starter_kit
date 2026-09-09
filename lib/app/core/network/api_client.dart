@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart' hide Response, FormData;
+import 'package:getx_starter_kit/app/core/config/app_config.dart';
 
 import 'interceptors/auth_interceptor.dart';
 import 'interceptors/logging_interceptor.dart';
@@ -8,17 +8,20 @@ import 'interceptors/refresh_interceptor.dart';
 import 'interceptors/retry_interceptor.dart';
 
 class ApiClient extends GetxService {
-  ApiClient() {
-    final baseUrl = dotenv.env['BASE_URL'] ?? 'https://api.yourapp.com/v1';
-    final timeoutSeconds = int.tryParse(dotenv.env['API_TIMEOUT_SECONDS'] ?? '30') ?? 30;
-    final connectTimeoutSeconds = int.tryParse(dotenv.env['API_CONNECT_TIMEOUT_SECONDS'] ?? '15') ?? 15;
+  @override
+  void onInit() {
+    super.onInit();
+
+    const baseUrl = AppConfig.baseUrl;
+    const timeoutSeconds = AppConfig.connectTimeout;
+    const connectTimeoutSeconds = AppConfig.receiveTimeout;
 
     _dio = Dio(
       BaseOptions(
         baseUrl: baseUrl,
-        connectTimeout: Duration(seconds: connectTimeoutSeconds),
-        receiveTimeout: Duration(seconds: timeoutSeconds),
-        sendTimeout: Duration(seconds: timeoutSeconds),
+        connectTimeout: const Duration(seconds: connectTimeoutSeconds),
+        receiveTimeout: const Duration(seconds: timeoutSeconds),
+        sendTimeout: const Duration(seconds: timeoutSeconds),
         contentType: 'application/json',
         headers: {'Accept': 'application/json'},
       ),
@@ -31,6 +34,7 @@ class ApiClient extends GetxService {
       RefreshInterceptor(),
     ]);
   }
+
 
   late final Dio _dio;
 

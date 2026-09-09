@@ -4,8 +4,6 @@
 // utility in the flutter_test package. For example, you can send tap and scroll
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +11,6 @@ import 'package:getx_starter_kit/main.dart';
 
 void main() {
   testWidgets('app loads smoke test', (WidgetTester tester) async {
-    await dotenv.load();
     await tester.pumpWidget(const App());
     await tester.pumpAndSettle(const Duration(seconds: 2));
     expect(find.byType(GetMaterialApp), findsOneWidget);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
-import '../theme/app_dimensions.dart';
 import '../theme/app_text_styles.dart';
+import '../theme/desgin_config.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({
@@ -25,9 +25,9 @@ class AppButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(vertical: AppDimensions.paddingMD),
+          padding: const EdgeInsets.symmetric(vertical: DesignConfig.paddingMD),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppDimensions.radiusMD),
+            borderRadius: BorderRadius.circular(DesignConfig.radiusMD),
           ),
         ),
         child: isLoading

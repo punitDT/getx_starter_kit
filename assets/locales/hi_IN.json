@@ -1,0 +1,17 @@
+{
+  "app_name": "जेटएक्स स्टार्टर किट",
+  "login_title": "लॉगिन",
+  "register_title": "रजिस्टर",
+  "email_label": "ईमेल",
+  "password_label": "पासवर्ड",
+  "forgot_password": "पासवर्ड भूल गए?",
+  "login_button": "लॉगिन",
+  "register_button": "अकाउंट बनाएं",
+  "logout": "लॉगआउट",
+  "welcome_back": "वापसी पर स्वागत है",
+  "home_title": "होम",
+  "loading": "लोड हो रहा है...",
+  "error": "त्रुटि",
+  "success": "सफलता",
+  "retry": "पुनः प्रयास"
+}

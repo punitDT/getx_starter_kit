@@ -15,7 +15,7 @@ class AuthRepositoryImpl extends BaseRepository implements AuthRepository {
   AuthRepositoryImpl(this._remoteDataSource);
 
   final AuthRemoteDataSource _remoteDataSource;
-  final SecureStorageService _secureStorageService = const SecureStorageService();
+  final SecureStorageService _secureStorageService =  Get.find<SecureStorageService>();
 
   @override
   Future<Result<UserEntity>> login(LoginRequestModel model) async {

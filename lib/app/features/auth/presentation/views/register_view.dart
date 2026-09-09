@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/base/base_view.dart';
+import 'package:get/get.dart';
 import '../controllers/auth_controller.dart';
 import '../widgets/auth_form_widget.dart';
 
-class RegisterView extends BaseView<AuthController> {
+class RegisterView extends GetView<AuthController> {
   const RegisterView({super.key});
 
   @override
-  Widget buildBody(BuildContext context) {
+  Widget build(BuildContext context) {
+
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
 
@@ -34,4 +34,5 @@ class RegisterView extends BaseView<AuthController> {
       ),
     );
   }
+
 }

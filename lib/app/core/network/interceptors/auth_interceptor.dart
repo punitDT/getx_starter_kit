@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import 'package:getx_starter_kit/app/core/helpers/auth.dart';
+import '../../providers/user_provider.dart';
 
 class AuthInterceptor extends Interceptor {
   @override
@@ -10,7 +10,7 @@ class AuthInterceptor extends Interceptor {
       return;
     }
 
-    final token = await Auth.accessToken;
+    final token = await UserProvider.accessToken;
     if (token != null && token.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $token';
     }
