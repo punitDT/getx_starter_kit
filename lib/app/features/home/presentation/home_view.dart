@@ -19,7 +19,6 @@ class HomeView extends GetView<HomeController> {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
-              final controller = Get.find<HomeController>();
               await Get.offAllNamed(AppRoutes.login);
             },
           ),

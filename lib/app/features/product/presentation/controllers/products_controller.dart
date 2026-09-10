@@ -27,9 +27,8 @@ class ProductsController extends GetxController {
     try {
       AppLogger.info('Fetching all products');
       final List<ProductEntity> result = await _repository.fetchAllProducts();
-      AppLogger.info('Result of fetchAllProducts');
-      AppLogger.info(result);
-      products(result);
+      AppLogger.info('Fetched ${result.length} products');
+      products.assignAll(result);
       products.refresh();
       SnackbarHelper.showSuccess('Welcome ');
     } catch (e) {

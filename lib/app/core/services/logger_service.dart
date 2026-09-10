@@ -17,7 +17,7 @@ class LoggerService extends GetxService {
   }
 
   void verbose(dynamic message, [dynamic error, StackTrace? stackTrace]) {
-    _logger.v(
+    _logger.t(
       message,
       error: error,
       stackTrace: stackTrace,
@@ -57,7 +57,7 @@ class LoggerService extends GetxService {
   }
 
   void wtf(dynamic message, [dynamic error, StackTrace? stackTrace]) {
-    _logger.wtf(
+    _logger.f(
       message,
       error: error,
       stackTrace: stackTrace,

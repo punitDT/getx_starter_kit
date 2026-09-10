@@ -3,6 +3,18 @@ import 'package:dio/dio.dart';
 import '../../providers/user_provider.dart';
 
 class AuthInterceptor extends Interceptor {
+  AuthInterceptor();
+
+  static const _publicEndpoints = [
+    '/auth/login',
+    '/auth/register',
+    '/auth/refresh',
+  ];
+
+  bool _isPublicEndpoint(String path) {
+    return _publicEndpoints.any((endpoint) => path == endpoint || path.startsWith(endpoint + '/') || path == endpoint);
+  }
+
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     if (_isPublicEndpoint(options.path)) {
@@ -15,9 +27,5 @@ class AuthInterceptor extends Interceptor {
       options.headers['Authorization'] = 'Bearer $token';
     }
     handler.next(options);
-  }
-
-  bool _isPublicEndpoint(String path) {
-    return path.contains('/auth/login') || path.contains('/auth/register') || path.contains('/auth/refresh');
   }
 }

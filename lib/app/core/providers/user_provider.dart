@@ -46,6 +46,10 @@ class UserProvider {
   /// Clear user + secure tokens
   static Future<void> clearSession() async {
     await session.clearUser();
-    await Get.find<SecureStorageService>().clearAll();
+    try {
+      await Get.find<SecureStorageService>().clearAll();
+    } catch (_) {
+      // SecureStorageService may not be initialized in test environments
+    }
   }
 }

@@ -12,8 +12,6 @@ class HomeController extends GetxController {
 
   void loadHome() {
     isLoading.value = true;
-    Future<void>.delayed(const Duration(milliseconds: 500), () {
-      isLoading.value = false;
-    });
+    isLoading.value = false;
   }
 }

@@ -30,8 +30,7 @@ class StorageService extends GetxService {
   UserEntity? getUser() {
     final data = _box.read(StorageKeys.userProfileCache);
     if (data == null) return null;
-    // Ensure it's a Map<String, dynamic>
-    final map = Map<String, dynamic>.from(data as Map);
+    final map = Map<String, dynamic>.from(data as Map<String, dynamic>);
     return UserEntity.fromJson(map);
   }
 

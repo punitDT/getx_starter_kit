@@ -9,7 +9,7 @@ import '../models/product_model.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
   // Inject the ProductDataSource dependency
-  ProductDataSource _productDataSource;
+  final ProductDataSource _productDataSource;
 
   ProductRepositoryImpl(this._productDataSource);
 

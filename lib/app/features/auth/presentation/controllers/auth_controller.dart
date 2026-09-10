@@ -17,11 +17,6 @@ class AuthController extends GetxController {
 
   RxBool isLoading = false.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
   Future<void> login(String email, String password) async {
     try {
       final result = await _repository.login(

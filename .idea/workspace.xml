@@ -13,24 +13,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17f72509-3307-4bb2-9464-f655cdbbc172" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/bindings/initial_binding.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/bindings/initial_binding.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/core/base/base_controller.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/core/constants/api_endpoints.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/constants/api_endpoints.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/core/utils/result.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/features/auth/data/repositories/auth_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/features/auth/data/repositories/auth_repository_impl.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/features/auth/domain/repositories/auth_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/features/auth/domain/repositories/auth_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/core/network/interceptors/auth_interceptor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/network/interceptors/auth_interceptor.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/core/network/interceptors/refresh_interceptor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/network/interceptors/refresh_interceptor.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/core/network/interceptors/retry_interceptor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/network/interceptors/retry_interceptor.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/core/providers/user_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/providers/user_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/core/services/logger_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/services/logger_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/core/services/storage_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/core/services/storage_service.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/app/features/auth/presentation/controllers/auth_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/features/auth/presentation/controllers/auth_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/features/auth/presentation/views/register_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/features/auth/presentation/views/register_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/app/features/home/presentation/home_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/features/home/presentation/home_controller.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/app/features/home/presentation/home_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/features/home/presentation/home_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/features/product/data/models/product_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/features/product/data/models/product_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/app/features/product/data/repositories/product_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/features/product/data/repositories/product_repository_impl.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/features/product/domain/entities/product_entity.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/features/product/domain/entities/product_entity.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/features/product/domain/entities/product_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/features/product/domain/repositories/product_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/routes/app_pages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/routes/app_pages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/routes/app_routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/routes/app_routes.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/features/product/presentation/controllers/products_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/features/product/presentation/controllers/products_controller.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +137,7 @@
     "io.flutter.reload.alreadyRun": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/punitpatel/Workspace/Flutter/getx_starter_kit/lib/app/features/product",
-    "settings.editor.selected.configurable": "actions.on.save",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.mcp.McpConfigurable",
     "settings.editor.splitter.proportion": "0.3027523",
     "show.migrate.to.gradle.popup": "false"
   }
