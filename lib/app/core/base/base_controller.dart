@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 
-import '../errors/app_exception.dart';
 import '../widgets/snackbar_helper.dart';
 
 abstract class BaseController extends GetxController {
@@ -27,9 +26,9 @@ abstract class BaseController extends GetxController {
     clearError();
     try {
       await action();
-    } on AppException catch (e) {
-      setError(e.message);
-      SnackbarHelper.showError(e.message);
+    } on Exception catch (e) {
+      setError(e.toString());
+      SnackbarHelper.showError(e.toString());
     } catch (e) {
       const message = 'Something went wrong. Please try again.';
       setError(message);

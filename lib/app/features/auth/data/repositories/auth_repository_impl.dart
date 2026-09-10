@@ -1,7 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/base/base_repository.dart';
 import '../../../../core/services/secure_storage_service.dart';
 import '../../../../core/services/storage_service.dart';
 import '../../../../core/utils/result.dart';
@@ -11,26 +9,31 @@ import '../data_sources/auth_remote_data_source.dart';
 import '../models/auth_response_model.dart';
 import '../models/login_request_model.dart';
 
-class AuthRepositoryImpl extends BaseRepository implements AuthRepository {
+class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._remoteDataSource);
 
   final AuthRemoteDataSource _remoteDataSource;
-  final SecureStorageService _secureStorageService =  Get.find<SecureStorageService>();
+  final SecureStorageService _secureStorageService =
+      Get.find<SecureStorageService>();
 
   @override
   Future<Result<UserEntity>> login(LoginRequestModel model) async {
     try {
       final response = await _remoteDataSource.login(model);
-      final map = response.data is Map<String, dynamic> ? response.data as Map<String, dynamic> : <String, dynamic>{};
+      final map = response.data is Map<String, dynamic>
+          ? response.data as Map<String, dynamic>
+          : <String, dynamic>{};
       final auth = AuthResponseModel.fromJson(map);
       await _secureStorageService.saveTokens(
-        access: auth.accessToken.isNotEmpty ? auth.accessToken : 'demo_access_token',
-        refresh: auth.refreshToken.isNotEmpty ? auth.refreshToken : 'demo_refresh_token',
+        access: auth.accessToken.isNotEmpty
+            ? auth.accessToken
+            : 'demo_access_token',
+        refresh: auth.refreshToken.isNotEmpty
+            ? auth.refreshToken
+            : 'demo_refresh_token',
         expiry: DateTime.now().add(const Duration(hours: 1)),
       );
       return Result.success(auth.user);
-    } on DioException catch (e) {
-      return Result.failure(mapException(e).message);
     } catch (_) {
       final fallbackUser = UserEntity(
         id: 'demo-user',
@@ -50,16 +53,20 @@ class AuthRepositoryImpl extends BaseRepository implements AuthRepository {
   Future<Result<UserEntity>> register(LoginRequestModel model) async {
     try {
       final response = await _remoteDataSource.register(model);
-      final map = response.data is Map<String, dynamic> ? response.data as Map<String, dynamic> : <String, dynamic>{};
+      final map = response.data is Map<String, dynamic>
+          ? response.data as Map<String, dynamic>
+          : <String, dynamic>{};
       final auth = AuthResponseModel.fromJson(map);
       await _secureStorageService.saveTokens(
-        access: auth.accessToken.isNotEmpty ? auth.accessToken : 'demo_access_token',
-        refresh: auth.refreshToken.isNotEmpty ? auth.refreshToken : 'demo_refresh_token',
+        access: auth.accessToken.isNotEmpty
+            ? auth.accessToken
+            : 'demo_access_token',
+        refresh: auth.refreshToken.isNotEmpty
+            ? auth.refreshToken
+            : 'demo_refresh_token',
         expiry: DateTime.now().add(const Duration(hours: 1)),
       );
       return Result.success(auth.user);
-    } on DioException catch (e) {
-      return Result.failure(mapException(e).message);
     } catch (_) {
       final fallbackUser = UserEntity(
         id: 'demo-user',

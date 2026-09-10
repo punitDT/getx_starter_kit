@@ -6,4 +6,8 @@ class ApiEndpoints {
   static const String refresh = '/auth/refresh';
   static const String profile = '/user/profile';
   static const String home = '/home';
+
+  static const String products = '/products';
+
+
 }
