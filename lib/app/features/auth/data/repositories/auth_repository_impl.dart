@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 import '../../../../core/services/secure_storage_service.dart';
 import '../../../../core/services/storage_service.dart';
-import '../../../../core/utils/result.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../data_sources/auth_remote_data_source.dart';
@@ -17,7 +16,7 @@ class AuthRepositoryImpl implements AuthRepository {
       Get.find<SecureStorageService>();
 
   @override
-  Future<Result<UserEntity>> login(LoginRequestModel model) async {
+  Future<UserEntity> login(LoginRequestModel model) async {
     try {
       final response = await _remoteDataSource.login(model);
       final map = response.data is Map<String, dynamic>
@@ -33,7 +32,7 @@ class AuthRepositoryImpl implements AuthRepository {
             : 'demo_refresh_token',
         expiry: DateTime.now().add(const Duration(hours: 1)),
       );
-      return Result.success(auth.user);
+      return auth.user;
     } catch (_) {
       final fallbackUser = UserEntity(
         id: 'demo-user',
@@ -45,12 +44,12 @@ class AuthRepositoryImpl implements AuthRepository {
         refresh: 'demo_refresh_token',
         expiry: DateTime.now().add(const Duration(hours: 1)),
       );
-      return Result.success(fallbackUser);
+      return fallbackUser;
     }
   }
 
   @override
-  Future<Result<UserEntity>> register(LoginRequestModel model) async {
+  Future<UserEntity> register(LoginRequestModel model) async {
     try {
       final response = await _remoteDataSource.register(model);
       final map = response.data is Map<String, dynamic>
@@ -66,14 +65,14 @@ class AuthRepositoryImpl implements AuthRepository {
             : 'demo_refresh_token',
         expiry: DateTime.now().add(const Duration(hours: 1)),
       );
-      return Result.success(auth.user);
+      return auth.user;
     } catch (_) {
       final fallbackUser = UserEntity(
         id: 'demo-user',
         name: model.email.split('@').first,
         email: model.email,
       );
-      return Result.success(fallbackUser);
+      return fallbackUser;
     }
   }
 
@@ -86,11 +85,11 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Result<String>> refreshToken() async {
+  Future<String> refreshToken() async {
     final refreshToken = await _secureStorageService.getRefreshToken();
     if (refreshToken == null || refreshToken.isEmpty) {
-      return const Result.failure('Refresh token is missing.');
+      return 'Refresh token is missing.';
     }
-    return Result.success(refreshToken);
+    return refreshToken;
   }
 }

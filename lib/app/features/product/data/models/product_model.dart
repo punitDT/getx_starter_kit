@@ -22,4 +22,16 @@ class ProductModel extends ProductEntity {
       image: json['image'] as String,
     );
   }
+
+  // TO JSON: Converts App Model -> Map payload for the server
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'price': price,
+      'description': description,
+      'category': category,
+      'image': image,
+    };
+  }
 }

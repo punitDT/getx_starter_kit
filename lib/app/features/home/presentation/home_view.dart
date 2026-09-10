@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../routes/app_routes.dart';
@@ -20,7 +21,6 @@ class HomeView extends GetView<HomeController> {
             onPressed: () async {
               final controller = Get.find<HomeController>();
               await Get.offAllNamed(AppRoutes.login);
-              controller.hideLoading();
             },
           ),
         ],
@@ -43,5 +43,4 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-
 }
